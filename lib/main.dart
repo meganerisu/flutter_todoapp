@@ -18,6 +18,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class Task {
+  String content = "";
+  DateTime? deadLine;
+}
+
 class ToDoListPage extends StatefulWidget {
   ToDoListPage({Key? key, required this.title}) : super(key: key);
 
