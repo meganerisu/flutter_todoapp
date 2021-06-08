@@ -47,6 +47,49 @@ class _ToDoListPageState extends State<ToDoListPage> {
                   ),
                 ));
               })),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return ToDoAddPage();
+          }));
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class ToDoAddPage extends StatefulWidget {
+  @override
+  _ToDoAddPageState createState() => _ToDoAddPageState();
+}
+
+class _ToDoAddPageState extends State<ToDoAddPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Add Task"),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(64),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            TextFormField(
+              decoration: InputDecoration(hintText: "What do I have to do?"),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(onPressed: () {}, child: Text("Add Task")),
+            SizedBox(
+              height: 10,
+            ),
+            TextButton(onPressed: () {}, child: Text("Cancel"))
+          ],
+        ),
+      ),
     );
   }
 }
