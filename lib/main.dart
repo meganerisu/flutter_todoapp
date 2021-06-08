@@ -41,10 +41,11 @@ class _ToDoListPageState extends State<ToDoListPage> {
               itemCount: todoArray.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
+                    child: Card(
                   child: ListTile(
                     title: Text(todoArray[index]),
                   ),
-                );
+                ));
               })),
     );
   }
