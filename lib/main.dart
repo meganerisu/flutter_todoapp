@@ -21,6 +21,8 @@ class MyApp extends StatelessWidget {
 class Task {
   String content = "";
   DateTime? deadLine;
+
+  Task(this.content, this.deadLine);
 }
 
 class ToDoListPage extends StatefulWidget {
@@ -33,7 +35,12 @@ class ToDoListPage extends StatefulWidget {
 }
 
 class _ToDoListPageState extends State<ToDoListPage> {
-  var todoList = ["右を見る", "左を見る", "右を見る", "道を渡る"];
+  var todoList = [
+    Task("右を見る", DateTime(2021, 5, 1, 12, 00)),
+    Task("右を見る", DateTime(2021, 5, 2, 12, 00)),
+    Task("左を見る", DateTime(2021, 5, 1, 18, 00)),
+    Task("道を渡る", null)
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +52,20 @@ class _ToDoListPageState extends State<ToDoListPage> {
           child: ListView.builder(
               itemCount: todoList.length,
               itemBuilder: (BuildContext context, int index) {
+                todoList.sort((a, b) {
+                  if (a.deadLine != null && b.deadLine != null) {
+                    return a.deadLine!.compareTo(b.deadLine!);
+                  } else {
+                    return 0;
+                  }
+                });
                 return Container(
                     child: Card(
                   child: ListTile(
-                    title: Text(todoList[index]),
-                  ),
+                      title: Text(todoList[index].content),
+                      subtitle: Text(
+                        todoList[index].deadLine.toString(),
+                      )),
                 ));
               })),
       floatingActionButton: FloatingActionButton(
